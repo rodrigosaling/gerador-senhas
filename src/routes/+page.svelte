@@ -47,14 +47,17 @@
 		return new Array(length).fill(0).map(() => randomInt(min, max));
 	};
 
-	let uniqueRandomPositions: number[] = [];
-	// let uniqueRandomPositions = [...new Set(randomIntArray(4, 0, wordList.length))];
-	// let uniqueRandomPositions = randomIntArray(4, 0, wordList.length);
-	// let index = 0;
-	while (uniqueRandomPositions.length < 4) {
-		uniqueRandomPositions = [...new Set(randomIntArray(4, 0, wordList.length))];
-		console.log(uniqueRandomPositions);
-	}
+	const generateUniqueArray = () => {
+		let uniqueRandomPositions: number[] = [];
+		do {
+			uniqueRandomPositions = [...new Set(randomIntArray(numberOfWords, 0, wordList.length))];
+		} while (uniqueRandomPositions.length < numberOfWords);
+		return uniqueRandomPositions;
+	};
+
+	let toDisplay: number[] = [];
+
+	let numberOfWords = 3;
 </script>
 
 <h1>Gerador de Senhas</h1>
@@ -66,9 +69,27 @@
 	ao invés de palavras em inglês.
 </p>
 
-<p>Lista de palavras únicas:</p>
+<p>
+	Lista de palavras únicas: <button
+		type="button"
+		on:click={() => (toDisplay = generateUniqueArray())}>gerar senha</button
+	>
+</p>
+<div>
+	<select
+		name="number-words"
+		id=""
+		on:change={(event) => (numberOfWords = parseInt(event.target.value))}
+	>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+	</select>
+</div>
 <ul>
-	{#each uniqueRandomPositions as position}
+	{#each toDisplay as position}
 		<li>{wordList[position]}</li>
 	{/each}
 </ul>
