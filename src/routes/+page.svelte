@@ -1,48 +1,20 @@
 <script lang="ts">
-	const wordList = [
-		'casa',
-		'bolo',
-		'pessoa',
-		'musica',
-		'lampada',
-		'carro',
-		'livro',
-		'caneta',
-		'lapis',
-		'borracha',
-		'viagem',
-		'caminhao',
-		'onibus',
-		'apartamento',
-		'igreja',
-		'cruzeiro',
-		'teclado',
-		'cozinha'
-	];
+	import wordList from '../word-list.json';
 
 	// https://stackoverflow.com/a/55598692/785985
-	/*
-	 *
-	 * Return values in the range of [0, 1)
-	 */
+	// Return values in the range of [0, 1)
 	const randomFloat = function () {
 		const int = crypto.getRandomValues(new Uint32Array(1))[0];
 		return int / 2 ** 32;
 	};
 
-	/**
-	 * Return integers in the range of [min, max)
-	 *
-	 * @todo check that min is <= max.
-	 */
+	//  Return integers in the range of [min, max)
 	const randomInt = function (min: number, max: number) {
 		const range = max - min;
 		return Math.floor(randomFloat() * range + min);
 	};
 
-	/**
-	 * Generate an array of integers in the range of [min, max).
-	 */
+	// Generate an array of integers in the range of [min, max).
 	const randomIntArray = function (length: number, min: number, max: number) {
 		return new Array(length).fill(0).map(() => randomInt(min, max));
 	};
@@ -50,7 +22,7 @@
 	const generateUniqueArray = () => {
 		let uniqueRandomPositions: number[] = [];
 		do {
-			uniqueRandomPositions = [...new Set(randomIntArray(numberOfWords, 0, wordList.length))];
+			uniqueRandomPositions = [...new Set(randomIntArray(numberOfWords, 0, wordList.length + 1))];
 		} while (uniqueRandomPositions.length < numberOfWords);
 		return uniqueRandomPositions;
 	};
