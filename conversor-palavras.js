@@ -9,7 +9,7 @@ const setOfUniqueWords = new Set();
 (async function processLineByLine() {
 	try {
 		const rl = readline.createInterface({
-			input: fs.createReadStream('pythonprobr-palavras.txt'),
+			input: fs.createReadStream('dicionario-simples.txt'),
 			crlfDelay: Infinity
 		});
 
