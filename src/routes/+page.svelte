@@ -34,60 +34,75 @@
 <Template>
 	<header slot="header" style="display: flex; justify-content: center; background-color: #0B2027;">
 		<div style="max-width: 768px; color: #CFD7C7; padding: 3rem; text-align: center;">
-			<h1 style="">Gerador de Senhas</h1>
+			<h1 style="font-size: 3rem">Gerador de Senhas</h1>
 
 			<p style="margin-top: 2rem;">
 				Este gerador de senhas é baseado no <a href="https://1password.com/pt/password-generator/"
 					>gerador de senhas do 1Password</a
-				>, a diferença é que ele utiliza palavras em português.
+				>, a diferença é que este aqui utiliza palavras em português.
 			</p>
 		</div>
 	</header>
 
-	<main slot="main" style="max-width: 768px; margin: 0 auto;">
+	<main slot="main" style="max-width: 768px; margin: 0 auto; padding: 0 1rem">
 		<p class="warning">
-			<em>Atenção!</em> Este gerador utiliza um dicionario com apenas {wordList.length} palavras, o que
-			resulta em senhas <strong>pouco seguras</strong>. Com o tempo mais palavras serão adicionadas
-			para aumentar a segurança.
+			<em>Atenção!</em> Este gerador utiliza um dicionário com apenas {wordList.length} palavras, o que
+			resulta em senhas <strong>extremamente inseguras</strong>. Utilize esta ferramenta por sua
+			própria conta e risco.
 		</p>
 
-		<p>Selecione a quantidade de palavras na senha:</p>
+		<div style="display: flex; justify-content: space-around;">
+			<div>
+				<p>Selecione a quantidade de palavras na senha:</p>
 
-		<ul style="list-style: none; display:flex">
-			{#each availableNumbers as number}
-				<li>
-					<Button
-						type={ButtonType.button}
-						label={number}
-						value={number}
-						onClick={setNumberOfWords}
-						isSelected={number === numberOfWords}
-					/>
-				</li>
-			{/each}
-		</ul>
+				<ul style="list-style: none; display:flex">
+					{#each availableNumbers as number}
+						<li>
+							<Button
+								type={ButtonType.button}
+								label={number}
+								value={number}
+								onClick={setNumberOfWords}
+								isSelected={number === numberOfWords}
+							/>
+						</li>
+					{/each}
+				</ul>
+			</div>
+			<div>
+				<p>Selecione o separador entre as palavras:</p>
 
-		<p>Selecione o separador entre as palavras</p>
+				<ul style="list-style: none; display:flex">
+					{#each availableSeparators as separator}
+						<li>
+							<Button
+								type={ButtonType.button}
+								label={separator}
+								value={separator}
+								onClick={setSeparator}
+								isSelected={separator === wordDivider}
+							/>
+						</li>
+					{/each}
+				</ul>
+			</div>
+		</div>
 
-		<ul style="list-style: none; display:flex">
-			{#each availableSeparators as separator}
-				<li>
-					<Button
-						type={ButtonType.button}
-						label={separator}
-						value={separator}
-						onClick={setSeparator}
-						isSelected={separator === wordDivider}
-					/>
-				</li>
-			{/each}
-		</ul>
-
-		<p>
+		<div style="text-align: center; margin-top: 2rem">
 			<button type="button" on:click={handleGeneratePasswordClick}>Gerar Senha</button>
-		</p>
+		</div>
 
-		{toDisplay}
+		{#if toDisplay}
+			<p
+				style="font-family: 'Courier New', Courier, monospace; background-color: #fff; padding: 1rem; border-radius: 6px; font-weight:600; font-size: 1.25rem; border: 1px solid #70A9A1; text-align:center"
+			>
+				{toDisplay}
+			</p>
+
+			<p>
+				Comprimento: {toDisplay.length} caracteres
+			</p>
+		{/if}
 	</main>
 
 	<footer
@@ -101,6 +116,10 @@
 <style>
 	header a {
 		color: #cfd7c7;
+
+		&:hover {
+			text-decoration: none;
+		}
 	}
 	.warning {
 		padding: 20px;
