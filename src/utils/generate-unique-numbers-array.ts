@@ -5,26 +5,38 @@ function randomFloat(): number {
 	return int / 2 ** 32;
 }
 
-//  Return integers in the range of [min, max]
+//  Return integers in the range of [min, max)
 function randomInt(min: number, max: number): number {
 	const range = max - min;
 	return Math.floor(randomFloat() * range + min);
 }
 
-// Generate an array of integers in the range of [min, max]
+// Generate an array of integers in the range of [min, max)
 function randomIntArray(length: number, min: number, max: number): number[] {
 	return new Array(length).fill(0).map(() => randomInt(min, max));
 }
 
-// TODO rename length param to something else
-export function generateUniqueNumbersArray(length: number, numberOfItems: number): number[] {
-	if (numberOfItems > length + 1) {
-		throw new Error('numberOfItems cannot be greater than length + 1');
+export function generateUniqueNumbersArray(
+	length: number,
+	minimum: number,
+	maximum: number
+): number[] {
+	const maximumInclusive = maximum + 1;
+
+	if (maximumInclusive <= minimum) {
+		throw new Error('Maximum must be greater than or equal to the minimum.');
+	}
+
+	const uniqueNumbersLimit = maximumInclusive - minimum;
+	if (length > uniqueNumbersLimit) {
+		throw new Error(
+			'The length of the array cannot be greater than the difference between the maximum and minimum numbers plus one.'
+		);
 	}
 
 	let uniqueRandomPositions: number[] = [];
 	do {
-		uniqueRandomPositions = [...new Set(randomIntArray(numberOfItems, 0, length + 1))];
-	} while (uniqueRandomPositions.length < numberOfItems);
+		uniqueRandomPositions = [...new Set(randomIntArray(length, minimum, maximumInclusive))];
+	} while (uniqueRandomPositions.length < length);
 	return uniqueRandomPositions;
 }
