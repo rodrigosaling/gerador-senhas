@@ -6,8 +6,10 @@
 	import { generateUniqueNumbersArray } from '../utils/generate-unique-numbers-array';
 	import Button from '../components/button.svelte';
 
-	let toDisplay: string = '';
+	const AVAILABLE_NUMBERS = [3, 4, 5, 6, 7];
+	const AVAILABLE_SEPARATORS = ['-', '_', ',', '.', ';'];
 
+	let toDisplay: string = '';
 	let numberOfWords = 4;
 	let wordDivider = '.';
 
@@ -22,13 +24,11 @@
 	}
 
 	function handleGeneratePasswordClick() {
-		const uniqueNumbers = generateUniqueNumbersArray(wordList.length, numberOfWords);
+		// length - 1 because we are using a zero-index array
+		const uniqueNumbers = generateUniqueNumbersArray(numberOfWords, 0, wordList.length - 1);
 		const words = uniqueNumbers.map((num) => wordList[num]);
 		toDisplay = words.join(wordDivider);
 	}
-
-	const availableNumbers = [3, 4, 5, 6, 7];
-	const availableSeparators = ['-', '_', ',', '.', ';'];
 </script>
 
 <Template>
@@ -56,7 +56,7 @@
 				<p>Selecione a quantidade de palavras na senha:</p>
 
 				<ul style="list-style: none; display:flex">
-					{#each availableNumbers as number}
+					{#each AVAILABLE_NUMBERS as number}
 						<li>
 							<Button
 								type={ButtonType.button}
@@ -73,7 +73,7 @@
 				<p>Selecione o separador entre as palavras:</p>
 
 				<ul style="list-style: none; display:flex">
-					{#each availableSeparators as separator}
+					{#each AVAILABLE_SEPARATORS as separator}
 						<li>
 							<Button
 								type={ButtonType.button}
@@ -109,7 +109,9 @@
 		slot="footer"
 		style="border-top: 1px solid  #70A9A1; padding: 1rem; margin-top: 4rem; font-size: .85rem"
 	>
-		<p style="max-width: 768px; margin: 0 auto">2024 - por Rodrigo Saling.</p>
+		<p style="max-width: 768px; margin: 0 auto">
+			2024 - por <a href="https://www.rodrigosaling.com">Rodrigo Saling</a>.
+		</p>
 	</footer>
 </Template>
 
