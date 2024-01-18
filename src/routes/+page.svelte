@@ -8,8 +8,8 @@
 
 	let toDisplay: string = '';
 
-	let numberOfWords = 3;
-	let wordDivider = '-';
+	let numberOfWords = 4;
+	let wordDivider = '.';
 
 	function setNumberOfWords(event: Event): void {
 		const { value } = (event.target as HTMLButtonElement) || {};
@@ -28,7 +28,7 @@
 	}
 
 	const availableNumbers = [3, 4, 5, 6, 7];
-	const availableSeparators = ['-', '_', '.', ';'];
+	const availableSeparators = ['-', '_', ',', '.', ';'];
 </script>
 
 <Template>
