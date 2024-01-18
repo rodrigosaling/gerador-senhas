@@ -43,16 +43,4 @@
 		background-color: #f6f1d1;
 		color: #0b2027;
 	}
-
-	/* :global(body) {
-		min-height: 100vh;
-	} */
-
-	/* :global(footer) {
-		flex-shrink: 0;
-	}
-
-	:global(main) {
-		flex-grow: 1;
-	} */
 </style>
