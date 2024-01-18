@@ -5,13 +5,13 @@ function randomFloat(): number {
 	return int / 2 ** 32;
 }
 
-//  Return integers in the range of [min, max)
+//  Return integers in the range of [min, max]
 function randomInt(min: number, max: number): number {
 	const range = max - min;
 	return Math.floor(randomFloat() * range + min);
 }
 
-// Generate an array of integers in the range of [min, max).
+// Generate an array of integers in the range of [min, max]
 function randomIntArray(length: number, min: number, max: number): number[] {
 	return new Array(length).fill(0).map(() => randomInt(min, max));
 }
