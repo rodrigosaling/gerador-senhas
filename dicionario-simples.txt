@@ -1,7 +1,3 @@
-
- empatia
- escarnecer
- exceto
 abacaxi
 abaixo
 abalar
@@ -1086,6 +1082,7 @@ emocionado
 emolumento
 emotivo
 empáfia
+empatia
 empenho
 empertigar
 empoderada
@@ -1176,6 +1173,7 @@ esboço
 escala
 escamotear
 escaramuça
+escarnecer
 escassa
 escasso
 esclarecer
@@ -1316,6 +1314,7 @@ excêntrica
 excêntrico
 excerto
 excesso
+exceto
 excitar
 exclamação
 excludente
