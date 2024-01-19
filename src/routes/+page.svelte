@@ -32,8 +32,8 @@
 </script>
 
 <Template>
-	<header slot="header" style="display: flex; justify-content: center; background-color: #0B2027;">
-		<div style="max-width: 768px; color: #CFD7C7; padding: 3rem; text-align: center;">
+	<header slot="header" style="display: flex; justify-content: center;">
+		<div style="max-width: 768px; padding: 3rem; text-align: center;">
 			<h1 style="font-size: 3rem">Gerador de Senhas</h1>
 
 			<p style="margin-top: 2rem;">
@@ -51,11 +51,13 @@
 			própria conta e risco.
 		</p>
 
-		<div style="display: flex; justify-content: space-around;">
+		<div style="display: flex; justify-content: space-around; margin-top: 3rem">
 			<div>
 				<p>Selecione a quantidade de palavras na senha:</p>
 
-				<ul style="list-style: none; display:flex">
+				<ul
+					style="list-style: none; display:flex; padding: 0; justify-content: space-between; margin-top: 1rem"
+				>
 					{#each AVAILABLE_NUMBERS as number}
 						<li>
 							<Button
@@ -72,7 +74,9 @@
 			<div>
 				<p>Selecione o separador entre as palavras:</p>
 
-				<ul style="list-style: none; display:flex">
+				<ul
+					style="list-style: none; display:flex; padding: 0; justify-content: space-between; margin-top: 1rem"
+				>
 					{#each AVAILABLE_SEPARATORS as separator}
 						<li>
 							<Button
@@ -89,27 +93,28 @@
 		</div>
 
 		<div style="text-align: center; margin-top: 2rem">
-			<button type="button" on:click={handleGeneratePasswordClick}>Gerar Senha</button>
+			<button
+				type="button"
+				on:click={handleGeneratePasswordClick}
+				style="min-width: 350px; padding: 1rem">Gerar Senha</button
+			>
 		</div>
 
 		{#if toDisplay}
 			<p
-				style="font-family: 'Courier New', Courier, monospace; background-color: #fff; padding: 1rem; border-radius: 6px; font-weight:600; font-size: 1.25rem; border: 1px solid #70A9A1; text-align:center"
+				style="font-family: 'Courier New', Courier, monospace; padding: 1rem; border-radius: 6px; font-weight:600; font-size: 1.25rem; border: 1px solid #aaa; text-align:center; margin-top: 2rem;"
 			>
 				{toDisplay}
 			</p>
 
-			<p>
+			<p style="margin-top: .75rem; font-size: 80%; text-align: center">
 				Comprimento: {toDisplay.length} caracteres
 			</p>
 		{/if}
 	</main>
 
-	<footer
-		slot="footer"
-		style="border-top: 1px solid  #70A9A1; padding: 1rem; margin-top: 4rem; font-size: .85rem"
-	>
-		<p style="max-width: 768px; margin: 0 auto">
+	<footer slot="footer" style="padding: 1rem; margin-top: 4rem; font-size: .85rem">
+		<p style="max-width: 768px; margin: 0 auto; text-align: center;">
 			2024 - por <a href="https://www.rodrigosaling.com">Rodrigo Saling</a>.
 		</p>
 	</footer>
@@ -117,8 +122,6 @@
 
 <style>
 	header a {
-		color: #cfd7c7;
-
 		&:hover {
 			text-decoration: none;
 		}
@@ -129,7 +132,6 @@
 		border-radius: 4px;
 		background-color: #fff5f5;
 		color: #721c24;
-		margin: 3rem 0;
 	}
 
 	.warning:before {

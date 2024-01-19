@@ -40,7 +40,7 @@
 		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
 			'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
 			'Noto Color Emoji';
-		background-color: #f6f1d1;
-		color: #0b2027;
+		/* background-color: #e7e5e4;
+		color: #292524; */
 	}
 </style>
